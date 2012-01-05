@@ -15,19 +15,22 @@ class Mastermind(object):
 				self.score[i] = 1
 			else:
 				self.score[i] = 0
-	def __repr__(self):
-		pass
+	def print_score(self):
+		print self.score
 
 	def get_input(self):
-		print "Enter your guess:"
-		self.guess = raw_input().upper()
+		while True:
+			print "Enter your guess: (up to %d letters of %s)" % (WIDTH, COLOURS)
+			self.guess = raw_input().upper()
+			if len(self.guess.strip()) == WIDTH:
+				break
 
 	def run(self):
 		while True:
 			self.get_input()
 			print self.problem
 			self.check_answer()
-			print self.score
+			self.print_score()
 			if self.score == [2]*WIDTH:
 				print "you are a mastermind"
 				break
